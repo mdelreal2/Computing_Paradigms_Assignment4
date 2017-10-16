@@ -1,4 +1,4 @@
-var ballRadius = 400;
+var ballRadius = JSON.parse(sessionStorage.getItem("ballRadius"));
 var ballX = 0;
 var ballY = 0;
 var timer = 5000;
