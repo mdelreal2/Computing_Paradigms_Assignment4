@@ -11,10 +11,18 @@
     <body>
         
         <h1>Welcome to Speed Clicker</h1>
-        <h2>See how many buttons you can click within 5 seconds!</h2>
+        <h2>See how many circles you can click within 5 seconds!</h2>
         
         <input
-            type="button" id="start_button" onclick="start_game()" value = "start">
+            type="button" id="start_button" onclick="start_game()" value = "play">
+        </input>
+
+        <input 
+            type="range" id="difficulty_slider" value = "0">
+        </input>
+
+        <input
+            type="text" id="display_value" value = "0">
         </input>
 
         <br></br>

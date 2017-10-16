@@ -18,3 +18,18 @@ input[type="button"] {
     height: 30px;
     margin-left: -50px
 }
+
+input[type="text"] {
+    position: absolute;
+    left: 50%;
+    width: 40px;
+    margin-left: 200px;
+    visibility: hidden;
+}
+
+input[type="range"] {
+    position: absolute;
+    left: 50%;
+    margin-left: 60px;
+    visibility: hidden;
+}
