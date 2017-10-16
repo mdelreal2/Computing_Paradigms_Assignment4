@@ -151,14 +151,24 @@ function showRecordForm()
     //set the value of the refernce to 'score_display' to the 'score'
     userScore.value = score;
 
-    //create an event listener that will check the value the user entered into the 'name_entry' field
-    ///
-    ///NEED TO DO MORE
-    ///
+    //adding an event listener that will activate whenever the 'name_entry' input box is changed and the user pressed enter
     userName.addEventListener("change", function(){
+        //make sure the user enters in a value for the name in the input box
         if(userName.value != "")
         {
-            alert(userName.value);
+            //create objects to store the score from the game and the name the user entered
+            var storeUserName = new String(userName.value);
+            var storeScore = new Number(score);
+
+            //store the name and score for the session. JSON.stringify is called to turn the object into a string so it can be parsed and returned without damage to the data
+            sessionStorage.setItem("name", JSON.stringify(storeUserName));
+            sessionStorage.setItem("score", JSON.stringify(storeScore));
+
+            //send a popup that tells the user that their record was saved properly
+            alert("Your record was created!");
+
+            //go back to the welcome page
+            window.location.href = "/";
         }
     }, false);
 
