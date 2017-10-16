@@ -1,4 +1,4 @@
-var ballRadius = 10;
+var ballRadius = 400;
 var ballX = 0;
 var ballY = 0;
 var timer = 5000;
@@ -74,20 +74,21 @@ function isCircleClicked(event)
         coverCircle();
 
         //generate another random circle position that doesn't go outside the canvas 
-        ballX = Math.floor((Math.random() * canvasWidth - ballRadius) + ballRadius);
-        ballY = Math.floor((Math.random() * canvasHeight - ballRadius) + ballRadius);
+        ballX = Math.floor((Math.random() * (canvasWidth - ballRadius - ballRadius)) + (ballRadius ));
+        ballY = Math.floor((Math.random() * (canvasHeight - ballRadius - ballRadius)) + (ballRadius ));
 
         //make sure a point is selected that doesn't intersect the timer
         while (ballX - ballRadius <= 45 && ballY - ballRadius <= 20)
         {
-            ballX = Math.floor((Math.random() * canvasWidth - ballRadius) + ballRadius);
-            ballY = Math.floor((Math.random() * canvasHeight - ballRadius) + ballRadius);
+            ballX = Math.floor((Math.random() * (canvasWidth - ballRadius - ballRadius)) + (ballRadius ));
+            ballY = Math.floor((Math.random() * (canvasHeight - ballRadius - ballRadius)) + (ballRadius ));
         }
-        
+
+        //alert("ball postion: (" + ballX + ", " + ballY + ")\n" + "max bounds: (" + canvasWidth + ", " + canvasHeight + ")");
+
         //increase score counter
         score = score + 1;
     }
-
 }
 
 function update()
