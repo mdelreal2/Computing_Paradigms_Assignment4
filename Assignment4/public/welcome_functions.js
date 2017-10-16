@@ -9,11 +9,9 @@ function startGame()
     //going to obtain the browser's window size so the lowest dimension can dictate the largest radius circle that the user can choose to be drawn and play with
     var width = window.innerWidth;
     var height = window.innerHeight;
-    ///////
-    ///////May need to change this to have -1 to make sure the game will be able to draw atleast one circle
-    ///////
-    //setting the maximum radius to be half the lowest screen dimension
-    var maximumRadius = Math.floor(Math.min(width, height) / 2);
+
+    //setting the maximum radius to be half the lowest screen dimension and subtracting 1 from the total to ensure at least one possible circle can be drawn
+    var maximumRadius = Math.floor(Math.min(width, height) / 2) - 1;
 
     //reflecting this upper bound for the difficulty slider
     difficultySlider.max = maximumRadius;

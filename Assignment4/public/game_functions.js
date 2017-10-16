@@ -7,6 +7,8 @@ var score = 0;
 var canvas;
 var context;
 
+var modal;
+
 var canvasWidth = 0;
 var canvasHeight = 0;
 
@@ -16,6 +18,9 @@ window.onload = function()
     canvas = document.getElementById("canvas");
     //add an event listener to the canvas that responds to mouse clicks and sends the data of the click to isCircleClicked()
     canvas.addEventListener("mousedown", isCircleClicked, false);
+
+    //obtain a reference to the modal record form on the html page
+    modal = document.getElementById("record_form");
 
     //obtain a context from the canvas to alter it
     context = canvas.getContext("2d");
@@ -114,8 +119,8 @@ function stopUpdating(interval)
     //stop the page from calling setInterval
     clearInterval(interval);
 
-
-    alert(score);
+    //make visible the modal form that will display the score and request a name to create a record
+    showRecordForm();
 }
 
 function coverCircle()
@@ -134,4 +139,29 @@ function drawCircle()
     context.beginPath();
     context.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI);
     context.fill();
+}
+
+function showRecordForm()
+{
+    //obtain references to the modal record_form, the text score_display, and the text name_entry
+    var modal = document.getElementById("record_form");
+    var userScore = document.getElementById("score_display");
+    var userName = document.getElementById("name_entry");
+
+    //set the value of the refernce to 'score_display' to the 'score'
+    userScore.value = score;
+
+    //create an event listener that will check the value the user entered into the 'name_entry' field
+    ///
+    ///NEED TO DO MORE
+    ///
+    userName.addEventListener("change", function(){
+        if(userName.value != "")
+        {
+            alert(userName.value);
+        }
+    }, false);
+
+    //make visible the 'record_form' on the html page
+    modal.style.display = "block";
 }
