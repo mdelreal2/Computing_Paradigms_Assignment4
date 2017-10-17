@@ -31,5 +31,20 @@
             type="button" id="records_button" onclick="loadRecordsSelection()" value ="records">
         </input>
 
+        <input 
+            type="button" id="all_time_highest" onclick="loadAllTimeHighest()", value ="all time highest">
+        </input>
+
+        <input 
+            type="button" id="most_recent" onclick="loadMostRecent()", value ="most recent">
+
+        <br></br>
+        <div id="display_records">
+            <% @retrieved_data.each do |record| %>
+                <%= record.name %> <a href='mailto:<%= record.score %>'><%= record.score %></a>
+                <br/>
+            <% end %>
+        </div>
+
     </body>
 </html>

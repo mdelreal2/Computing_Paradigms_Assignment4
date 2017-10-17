@@ -1,23 +1,24 @@
 require 'sinatra'
 require 'sinatra/json'
 require 'sequel'
-require_relative 'player'
 
-#create an in memory sqlite database
-DB = Sequel.sqlite
 
-#create a table with following items in the database if it doesnt already exist
-DB.create_table :items do
+configure do
+    DB = Sequel.connect('sqlite://Records.db')
+    require_relative 'record'
 
-    primary_key :id
-    String :name
-    Int :score
-    DateTime :date
-
+    DB.create_table? :records do
+        primary_key :id
+        String :name
+        Int :score
+    end
+    
 end
 
 #handles the initial request for the page
 get '/' do
+    #@retrieved_data = Record.order_by(:score)
+    @retrieved_data = Record.reverse_order(:score)
 
     #render the template in the view folders
     erb :welcome
@@ -30,25 +31,26 @@ end
 
 post '/record' do
 
-    puts params
+    records = DB[:records]
+
+    records.insert(:name => params[:name], :score => params[:score])
+
+    print_all_records
+
 end
 
-#handles request to add new player data (and also returns all the other players)
-#this is a post not a get, posts are used to send data to the server
-post '/records_all_time' do
+get '/records_all_time' do
+    @retrieved_data = Record.order_by(:score)
 
-#should move this to another post and set once the game ends 
-    #create a new Player with the data from the browser
-    Player.create(:name => params[:name],
-                  :score => params[:score],
-                  :date => DateTime.now)
+    erb :welcome
+end
 
-    #get all the records and turn each into a hash and store it in an array
-    records = Player.reverse_order(:score).map do |player|
-        {:name => player.name, :score => player.score}
+def print_all_records
+
+    records = DB[:records]
+    
+    records.all.each do |record|
+        puts "Player: #{record[:name]} Score: #{record[:score]}"
     end
-
-    #turn the array of hashes into json
-    return json records
 
 end
