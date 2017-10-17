@@ -158,11 +158,10 @@ function showRecordForm()
         {
             //create objects to store the score from the game and the name the user entered
             var storeUserName = new String(userName.value);
-            var storeScore = new Number(score);
+            var storeScore = new String(score);
 
-            //store the name and score for the session. JSON.stringify is called to turn the object into a string so it can be parsed and returned without damage to the data
-            sessionStorage.setItem("name", JSON.stringify(storeUserName));
-            sessionStorage.setItem("score", JSON.stringify(storeScore));
+            //call a function that will post data to the server
+            postRecord(storeUserName, storeScore);
 
             //send a popup that tells the user that their record was saved properly
             alert("Your record was created!");
@@ -174,4 +173,12 @@ function showRecordForm()
 
     //make visible the 'record_form' on the html page
     modal.style.display = "block";
+}
+
+function postRecord(name, record)
+{
+    $(document).ready(function(){
+        $.post("/record", {name: name, score: score}, function(){});
+        
+    });
 }

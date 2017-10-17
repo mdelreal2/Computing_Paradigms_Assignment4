@@ -43,10 +43,11 @@ function startGame()
         //...and the slider value is set to something besides 0, then the game will start
         if (difficultySlider.value != 0)
         {
-            var radius = new Number(difficultySlider.value);
             //store the value of the difficulty_slider into the current session before switching the new url
+            var radius = new Number(difficultySlider.value);
             sessionStorage.setItem("ballRadius", JSON.stringify(radius));
 
+            //change to the location of the game
             window.location.href = "/start_game";
         }
         //..and the slider value is still 0, then change the button text back to 'play' and hide the slider and text box

@@ -19,10 +19,6 @@ end
 #handles the initial request for the page
 get '/' do
 
-    #use this to grab the leaderboards
-    #
-    #
-
     #render the template in the view folders
     erb :welcome
 end
@@ -30,6 +26,11 @@ end
 get '/start_game' do
 
     erb :game
+end
+
+post '/record' do
+
+    puts params
 end
 
 #handles request to add new player data (and also returns all the other players)
