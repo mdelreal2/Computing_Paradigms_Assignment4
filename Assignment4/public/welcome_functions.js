@@ -11,7 +11,9 @@ function startGame()
     var height = window.innerHeight;
 
     //setting the maximum radius to be half the lowest screen dimension and subtracting 1 from the total to ensure at least one possible circle can be drawn
-    var maximumRadius = Math.floor(Math.min(width, height) / 2) - 1;
+    //hardcoding 45 because the program won't allow the ball to cover up the timer, which is 45 pixels wide. This would be more than enough space to 
+    //prevent any infinite loops of trying to find a valid new ball location
+    var maximumRadius = Math.floor(Math.min((width - 45), height) / 2) - 1;
 
     //reflecting this upper bound for the difficulty slider
     difficultySlider.max = maximumRadius;
