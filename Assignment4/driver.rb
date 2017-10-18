@@ -51,9 +51,8 @@ get '/records_most_recent' do
     erb :welcome
 end
 
-get '/:name' do |name|
+get '/records_by_name/:name' do |name|
 
-    #@retrieved_data = Record.order_by(:name)
     @retrieved_data = Record.where(:name => name).reverse_order(:score)
 
     erb :welcome
