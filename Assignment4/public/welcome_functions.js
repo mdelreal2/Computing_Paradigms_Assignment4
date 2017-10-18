@@ -62,5 +62,54 @@ function startGame()
 
 function loadRecordsSelection()
 {
-    //show 3 more buttons - top 5 all time, top 5 most recent, all time
+    var recordsButton = document.getElementById("records_button");
+    var allTimeHighestButton = document.getElementById("all_time_highest");
+    var mostRecentButton = document.getElementById("most_recent");
+    var searchByName = document.getElementById("by_name");
+    var displayRecords = document.getElementById("display_records");
+
+    if (recordsButton.value == "records")
+    {
+        recordsButton.value = "hide";
+        allTimeHighestButton.style.visibility = "visible";
+        mostRecentButton.style.visibility = "visible";
+        searchByName.style.visibility = "visible";
+
+        displayRecords.style.visibility = "visible";
+    }
+
+    else if (recordsButton.value == "hide")
+    {
+        recordsButton.value = "records";
+        allTimeHighestButton.style.visibility = "hidden";
+        mostRecentButton.style.visibility = "hidden";
+        searchByName.style.visibility = "hidden";
+        displayRecords.style.visibility = "hidden";
+    }
+
+    
+}
+
+function loadAllTimeHighest()
+{
+    alert("loading all time highest");
+    window.location.href = "/records_all_time";
+}
+
+function loadMostRecent()
+{
+    alert("loading most recent");
+    window.location.href = "/records_most_recent";
+}
+
+function loadWithName()
+{
+    var name_box = document.getElementById("search_name_box");
+    name_box.style.visibility = "visible";
+    name_box.addEventListener("change", function(){
+        var entryName = new String("/records_by_person/" + name_box.value);
+        window.location.href = entryName;
+        //window.location.href = "/records_by_person/" + entryName;
+        alert("loading with name");
+    }, false);
 }

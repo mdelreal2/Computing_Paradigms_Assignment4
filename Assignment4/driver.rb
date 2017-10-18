@@ -5,13 +5,15 @@ require 'sequel'
 
 configure do
     DB = Sequel.connect('sqlite://Records.db')
-    require_relative 'record'
 
     DB.create_table? :records do
         primary_key :id
         String :name
         Int :score
+        DateTime :date
     end
+
+    require_relative 'record'
     
 end
 
@@ -33,24 +35,26 @@ post '/record' do
 
     records = DB[:records]
 
-    records.insert(:name => params[:name], :score => params[:score])
-
-    print_all_records
-
+    records.insert(:name => params[:name], :score => params[:score], :date => DateTime.now)
 end
 
 get '/records_all_time' do
-    @retrieved_data = Record.order_by(:score)
+    @retrieved_data = Record.reverse_order(:score)
 
     erb :welcome
 end
 
-def print_all_records
+get '/records_most_recent' do
+    @retrieved_data = Record.reverse_order(:date)
 
-    records = DB[:records]
-    
-    records.all.each do |record|
-        puts "Player: #{record[:name]} Score: #{record[:score]}"
-    end
+    erb :welcome
 
+end
+
+get '/records_by_person/:name' do |name|
+    puts name
+    #@retrieved_data = Record.each(name)
+    @retrieved_data = Record.order_by(:score)
+
+    erb :welcome
 end

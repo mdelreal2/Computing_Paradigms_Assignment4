@@ -32,16 +32,26 @@
         </input>
 
         <input 
-            type="button" id="all_time_highest" onclick="loadAllTimeHighest()", value ="all time highest">
+            type="button" id="all_time_highest" class="records_button1" onclick="loadAllTimeHighest()" value ="all time highest" >
         </input>
 
         <input 
-            type="button" id="most_recent" onclick="loadMostRecent()", value ="most recent">
+            type="button" id="most_recent" class="records_button2" onclick="loadMostRecent()" value ="most recent">
+        </input>
+
+        <input
+            type="button" id="by_name" class="records_button3" onclick="loadWithName()" value ="by name">
+        </input>
+
+        <br></br>
+        <input
+            type="text" id="search_name_box" class="search_box" value ="">
+        </input>
 
         <br></br>
         <div id="display_records">
             <% @retrieved_data.each do |record| %>
-                <%= record.name %> <a href='mailto:<%= record.score %>'><%= record.score %></a>
+                <%= record.name %> -- <%= record.score %></a>
                 <br/>
             <% end %>
         </div>

@@ -14,9 +14,32 @@ input[type="button"] {
     position: absolute;
     font-size: 15px;
     left: 50%;
-    width: 100px;
+    width: 115px;
     height: 30px;
-    margin-left: -50px
+    margin-left: -60px;
+}
+
+input[type="button"].records_button1 {
+    visibility: hidden;
+    margin-left: 60px;
+}
+
+input[type="button"].records_button2 {
+    visibility: hidden;
+    margin-left: 180px;
+}
+
+input[type="button"].records_button3 {
+    visibility: hidden;
+    margin-left: 300px;
+}
+
+input[type="text"].search_box {
+    visibility: hidden;
+    position: absolute;
+    left: 50%;
+    margin-left: 300px;
+    width: 115px;
 }
 
 input[type="text"] {
@@ -32,4 +55,10 @@ input[type="range"] {
     left: 50%;
     margin-left: 60px;
     visibility: hidden;
+}
+
+div {
+    position: absolute;
+    visibility: hidden;
+    left: 5%;
 }
