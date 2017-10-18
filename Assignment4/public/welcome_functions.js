@@ -109,9 +109,8 @@ function loadWithName()
     var name_box = document.getElementById("search_name_box");
     name_box.style.visibility = "visible";
     name_box.addEventListener("change", function(){
-        var entryName = new String("/records_by_person/" + name_box.value);
+        var entryName = new String("/" + name_box.value);
         window.location.href = entryName;
-        //window.location.href = "/records_by_person/" + entryName;
         alert("loading with name");
     }, false);
 }

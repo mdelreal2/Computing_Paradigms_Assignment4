@@ -45,16 +45,16 @@ get '/records_all_time' do
 end
 
 get '/records_most_recent' do
+
     @retrieved_data = Record.reverse_order(:date)
 
     erb :welcome
-
 end
 
-get '/records_by_person/:name' do |name|
-    puts name
-    #@retrieved_data = Record.each(name)
-    @retrieved_data = Record.order_by(:score)
+get '/:name' do |name|
+
+    #@retrieved_data = Record.order_by(:name)
+    @retrieved_data = Record.single_value(name)
 
     erb :welcome
 end
