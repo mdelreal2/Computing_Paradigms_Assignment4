@@ -51,10 +51,15 @@ window.onload = function()
     context.textBaseline = "top";
     context.font = "20px arial";
     context.fillText(timer, 0, 0);
-    
+}
 
-    //built in method that will call update() every 10 milliseconds
-    var interval = setInterval(function() {
+function isCircleClicked(event)
+{
+    //if it is the first time that the circle has been clicked, then start the timer
+    if (score == 0)
+    {
+        //built in method that will call update() every 10 milliseconds
+        var interval = setInterval(function() {
             if (timer > 0) 
             {
                 update(); 
@@ -64,10 +69,8 @@ window.onload = function()
                 stopUpdating(interval);
             }
         }, 10);
-}
-
-function isCircleClicked(event)
-{
+    }
+    
     //set the clicks position
     var x = event.pageX;
     var y = event.pageY;
@@ -88,8 +91,6 @@ function isCircleClicked(event)
             ballX = Math.floor((Math.random() * (canvasWidth - ballRadius - ballRadius)) + (ballRadius ));
             ballY = Math.floor((Math.random() * (canvasHeight - ballRadius - ballRadius)) + (ballRadius ));
         }
-
-        //alert("ball postion: (" + ballX + ", " + ballY + ")\n" + "max bounds: (" + canvasWidth + ", " + canvasHeight + ")");
 
         //increase score counter
         score = score + 1;
@@ -177,6 +178,7 @@ function showRecordForm()
 
 function postRecord(name, record)
 {
+    //jQuery function that will send data to the server
     $(document).ready(function(){
         $.post("/record", {name: name, score: score}, function(){});
         
