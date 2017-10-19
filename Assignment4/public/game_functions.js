@@ -5,10 +5,7 @@ var timer = 5000;
 var score = 0;
 var scoreMultiplier = 0;
 
-var canvas;
 var context;
-
-var modal;
 
 var canvasWidth = 0;
 var canvasHeight = 0;
@@ -19,12 +16,9 @@ var screenHeight = 0;
 window.onload = function()
 {
     //obtain a reference to the canvas on the html page to apply an event listener
-    canvas = document.getElementById("canvas");
+    var canvas = document.getElementById("canvas");
     //add an event listener to the canvas that responds to mouse clicks and sends the data of the click to isCircleClicked()
     canvas.addEventListener("mousedown", isCircleClicked, false);
-
-    //obtain a reference to the modal record form on the html page
-    modal = document.getElementById("record_form");
 
     //obtain a context from the canvas to alter it
     context = canvas.getContext("2d");

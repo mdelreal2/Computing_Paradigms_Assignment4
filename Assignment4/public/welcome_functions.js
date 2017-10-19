@@ -64,53 +64,67 @@ function startGame()
 
 function loadRecordsSelection()
 {
+    //obtain references to all the elements on the web page that refer to records
     var recordsButton = document.getElementById("records_button");
     var allTimeHighestButton = document.getElementById("all_time_highest");
     var mostRecentButton = document.getElementById("most_recent");
     var searchByName = document.getElementById("by_name");
     var displayRecords = document.getElementById("display_records");
 
+    //recordsButton's value will be toggled between 'records' and 'hide' so that the user can decide if they want to have the records displayed or not
     if (recordsButton.value == "records")
     {
+        //if the user presses the 'records' button, then show all the possible options to sort the records by
         recordsButton.value = "hide";
         allTimeHighestButton.style.visibility = "visible";
         mostRecentButton.style.visibility = "visible";
         searchByName.style.visibility = "visible";
-
         displayRecords.style.visibility = "visible";
     }
 
     else if (recordsButton.value == "hide")
     {
+        //if the user presses the 'hide' button, then hide all the possible options that relate to sorting the records
         recordsButton.value = "records";
         allTimeHighestButton.style.visibility = "hidden";
         mostRecentButton.style.visibility = "hidden";
         searchByName.style.visibility = "hidden";
         displayRecords.style.visibility = "hidden";
     }
-
-    
 }
 
+//onclick function for button with 'all_time_highest' id 
 function loadAllTimeHighest()
 {
+    //tell the user that their request went through and send a get call to the server
     alert("loading all time highest");
     window.location.href = "/records_all_time";
 }
 
+//onclick function for button with 'most_recent' id
 function loadMostRecent()
 {
+    //tell the user that their request went through and send a get call to the server
     alert("loading most recent");
     window.location.href = "/records_most_recent";
 }
 
+//onclick function for button with 'by_name' id
 function loadWithName()
 {
+    //variable that stores the reference to the 'search_name_box' input text element
     var name_box = document.getElementById("search_name_box");
+
+    //because the user wants to search for records with a specific name, show the input text element to the user
     name_box.style.visibility = "visible";
+
+    //add an event listener to the input text that will wait for the user to enter data and press enter
     name_box.addEventListener("change", function(){
+        //once the user presses enter, create an expression with the data the user entered to make a get call to the server
         var entryName = new String("/records_by_name/" + name_box.value);
-        window.location.href = entryName;
+
+        //alert the user that their request has been sent and to check for changes
         alert("loading with name");
+        window.location.href = entryName;
     }, false);
 }
