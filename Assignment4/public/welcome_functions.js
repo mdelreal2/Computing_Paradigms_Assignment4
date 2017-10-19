@@ -49,7 +49,7 @@ function startGame()
             var radius = new Number(difficultySlider.value);
             sessionStorage.setItem("ballRadius", JSON.stringify(radius));
 
-            //change to the location of the game
+            //make a call to the server and get the erb template for the game and run it
             window.location.href = "/start_game";
         }
         //..and the slider value is still 0, then change the button text back to 'play' and hide the slider and text box
@@ -69,6 +69,7 @@ function loadRecordsSelection()
     var allTimeHighestButton = document.getElementById("all_time_highest");
     var mostRecentButton = document.getElementById("most_recent");
     var searchByName = document.getElementById("by_name");
+    var name_box = document.getElementById("search_name_box");
     var displayRecords = document.getElementById("display_records");
 
     //recordsButton's value will be toggled between 'records' and 'hide' so that the user can decide if they want to have the records displayed or not
@@ -89,6 +90,7 @@ function loadRecordsSelection()
         allTimeHighestButton.style.visibility = "hidden";
         mostRecentButton.style.visibility = "hidden";
         searchByName.style.visibility = "hidden";
+        name_box.style.visibility = "hidden";
         displayRecords.style.visibility = "hidden";
     }
 }
@@ -127,4 +129,11 @@ function loadWithName()
         alert("loading with name");
         window.location.href = entryName;
     }, false);
+}
+
+//onclick function for button with 'settings_button' id
+function loadSettings()
+{
+    //make a call to the server and get the erb template for the settings and run it
+    window.location.href = "/settings";
 }

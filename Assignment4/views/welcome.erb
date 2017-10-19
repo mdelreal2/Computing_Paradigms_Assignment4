@@ -14,40 +14,44 @@
         <h2>See how many circles you can click within 5 seconds!</h2>
         
         <input
-            type="button" id="start_button" onclick="startGame()" value = "play">
+            type="button" id="start_button" onclick="startGame()" value="play">
         </input>
 
         <input 
-            type="range" id="difficulty_slider" value = "0">
+            type="range" id="difficulty_slider" value="0">
         </input>
 
         <input
-            type="text" id="display_value" value = "0">
+            type="text" id="display_value" value="0">
         </input>
 
         <br></br>
 
         <input 
-            type="button" id="records_button" onclick="loadRecordsSelection()" value ="records">
+            type="button" id="records_button" onclick="loadRecordsSelection()" value="records">
         </input>
 
         <input 
-            type="button" id="all_time_highest" class="records_button1" onclick="loadAllTimeHighest()" value ="all time highest" >
+            type="button" id="all_time_highest" class="records_button1" onclick="loadAllTimeHighest()" value="all time highest" >
         </input>
 
         <input 
-            type="button" id="most_recent" class="records_button2" onclick="loadMostRecent()" value ="most recent">
+            type="button" id="most_recent" class="records_button2" onclick="loadMostRecent()" value="most recent">
         </input>
 
         <input
-            type="button" id="by_name" class="records_button3" onclick="loadWithName()" value ="by name">
+            type="button" id="by_name" class="records_button3" onclick="loadWithName()" value="by name">
         </input>
 
         <br></br>
         <input
-            type="text" id="search_name_box" class="search_box" value ="">
+            type="button" id="settings_button" onclick="loadSettings()" value="settings">
         </input>
 
+        <input
+            type="text" id="search_name_box" class="search_box" value="">
+        </input>
+ 
         <br></br>
         <div id="display_records">
             <% @retrieved_data.each do |record| %>

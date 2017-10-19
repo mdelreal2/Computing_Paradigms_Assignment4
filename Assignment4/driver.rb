@@ -31,6 +31,11 @@ get '/start_game' do
     erb :game
 end
 
+get '/settings' do
+
+    erb :settings
+end
+
 post '/record' do
 
     records = DB[:records]
