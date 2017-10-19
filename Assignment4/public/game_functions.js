@@ -3,6 +3,7 @@ var ballX = 0;
 var ballY = 0;
 var timer = 5000;
 var score = 0;
+var scoreMultiplier = 0;
 
 var canvas;
 var context;
@@ -11,6 +12,9 @@ var modal;
 
 var canvasWidth = 0;
 var canvasHeight = 0;
+
+var screenWidth = 0;
+var screenHeight = 0;
 
 window.onload = function()
 {
@@ -32,6 +36,10 @@ window.onload = function()
     //set the global variables for the canvas width and height
     canvasWidth = canvas.width;
     canvasHeight = canvas.height;
+
+    //set the global variables for the screen width and height (physical monitor pixel dimensions)
+    screenWidth = screen.width;
+    screenHeight = screen.height;
 
     //set the starting position to be in the middle of the window
     ballX = canvasWidth / 2;
@@ -120,8 +128,32 @@ function stopUpdating(interval)
     //stop the page from calling setInterval
     clearInterval(interval);
 
+    //add more complexity to the score system by forming a calculation with the score that rewards a small radius and large window size
+    multiplyScoreByMultiplier();
+
     //make visible the modal form that will display the score and request a name to create a record
     showRecordForm();
+}
+
+function multiplyScoreByMultiplier()
+{
+    //variable that holds the shorter of the two canvas dimensions used to determine the maximum size of the ball's radius
+    var minDimension = Math.min(canvasWidth, canvasHeight);
+
+    //this may happen since they are calculated differently - even though in theory they should be the same. They are only ever off by 1 if the window size is as wide as possible, though
+    if (screenWidth < canvasWidth)
+    {
+        screenWidth = canvasWidth;
+    }
+
+    //the highest radius multiplier comes from having a large canvas window size and a small radius
+    var radiusMultiplier = minDimension / ballRadius;
+
+    //the maximum result is 2
+    var windowSizeMultiplier = (canvasWidth / screenWidth) + (canvasHeight / screenHeight);
+
+    //set the score as being this new calculation that rewards having a small radius and a large screen size
+    score = Math.floor(10 * radiusMultiplier * windowSizeMultiplier * score);
 }
 
 function coverCircle()
