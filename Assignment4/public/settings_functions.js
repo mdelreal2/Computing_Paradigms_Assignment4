@@ -8,6 +8,7 @@ window.onload = function()
     //the default settings can be loaded
     if(sessionStorage.getItem('ballColor') == null)
     {
+        alert("You must visit the home page first");
         window.location.href = "/";
     }
 

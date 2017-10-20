@@ -1,4 +1,4 @@
-var ballRadius = JSON.parse(sessionStorage.getItem("ballRadius"));
+var ballRadius = 0;
 var ballX = 0;
 var ballY = 0;
 var ballColor = "";
@@ -20,8 +20,10 @@ window.onload = function()
 {
     //if the user were to navigate to the game page without having come from the home page, redirect them so that 
     //the default settings can be loaded
-    if(sessionStorage.getItem('ballColor') == null)
+
+    if(sessionStorage.getItem('ballRadius') == null)
     {
+        alert("You must enter the game through the home page first");
         window.location.href = "/";
     }
 
@@ -29,6 +31,8 @@ window.onload = function()
     ballColor =  JSON.parse(sessionStorage.getItem("ballColor"));
     backgroundColor =  JSON.parse(sessionStorage.getItem("backgroundColor"));
     timerColor =  JSON.parse(sessionStorage.getItem("timerColor"));
+    //set the ball radius to the value selected by the user from the main page
+    ballRadius = JSON.parse(sessionStorage.getItem("ballRadius"));
 
     //obtain a reference to the canvas on the html page to apply an event listener
     var canvas = document.getElementById("canvas");
