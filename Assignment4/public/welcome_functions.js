@@ -1,3 +1,22 @@
+window.onload = function()
+{
+    if (JSON.parse(sessionStorage.getItem("alreadyVisited")) != "yes")
+    {
+        //setting the color settings for the game to default values
+        var ballColor = new String("white");
+        var backgroundColor = new String("black");
+        var timerColor = new String("white");
+
+        //storing the settings into session storage so the user can reload the page and traverse to different pages without losing their settings
+        sessionStorage.setItem("ballColor", JSON.stringify(ballColor));
+        sessionStorage.setItem("backgroundColor", JSON.stringify(backgroundColor));
+        sessionStorage.setItem("timerColor", JSON.stringify(timerColor));
+
+        var alreadyVisitedHomePage = new String("yes");
+        sessionStorage.setItem("alreadyVisited", JSON.stringify(alreadyVisitedHomePage));
+    }
+}
+
 //function that is called everytime the 'start_button' is pressed
 function startGame()
 {

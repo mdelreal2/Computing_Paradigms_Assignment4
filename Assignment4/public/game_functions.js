@@ -1,6 +1,9 @@
 var ballRadius = JSON.parse(sessionStorage.getItem("ballRadius"));
 var ballX = 0;
 var ballY = 0;
+var ballColor;
+var backgroundColor;
+var timerColor;
 var timer = 5000;
 var score = 0;
 var scoreMultiplier = 0;
@@ -15,6 +18,11 @@ var screenHeight = 0;
 
 window.onload = function()
 {
+    //change any of the ball, background, or timer colors if the user changed them in the settings
+    ballColor =  JSON.parse(sessionStorage.getItem("ballColor"));
+    backgroundColor =  JSON.parse(sessionStorage.getItem("backgroundColor"));
+    timerColor =  JSON.parse(sessionStorage.getItem("timerColor"));
+
     //obtain a reference to the canvas on the html page to apply an event listener
     var canvas = document.getElementById("canvas");
     //add an event listener to the canvas that responds to mouse clicks and sends the data of the click to isCircleClicked()
@@ -40,16 +48,17 @@ window.onload = function()
     ballY = canvasHeight / 2;
 
     //set the fill color to black and create a rectangle that spans the size of the canvas to set the background to a continuous color
-    context.fillStyle = "black";
+    context.fillStyle = backgroundColor;
     context.fillRect(0, 0, canvas.clientWidth, canvas.clientHeight);
 
     //set the fill color to white and create an initial circle to start the game
-    context.fillStyle = "white";
+    context.fillStyle = ballColor;
     context.beginPath();
     context.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI);
     context.fill();
 
     //draw white text with the timer value in the top left corner of the window
+    context.fillStyle = timerColor;
     context.textBaseline = "top";
     context.font = "20px arial";
     context.fillText(timer, 0, 0);
@@ -105,11 +114,11 @@ function update()
     timer = timer - 10;
 
     //set the fill style to black and draw a rectangle over the timer to make it dissapear
-    context.fillStyle = "black";
+    context.fillStyle = backgroundColor;
     context.fillRect(0, 0, 45, 20);
 
     //set the fill style to white and draw text that represents the new timer value 
-    context.fillStyle = "white";
+    context.fillStyle = timerColor;
     context.fillText(timer, 0, 0);
 
     //draw the current position of the circle (its position will be updated if the user clicks on it, 
@@ -153,7 +162,7 @@ function multiplyScoreByMultiplier()
 function coverCircle()
 {
     //set the fillStyle to black to match the background so it can cover up the current circle location
-    context.fillStyle = "black";
+    context.fillStyle = backgroundColor;
     context.beginPath();
     context.arc(ballX, ballY, ballRadius + 1, 0, 2 * Math.PI);
     context.fill();
@@ -162,7 +171,7 @@ function coverCircle()
 function drawCircle()
 {
     //set the fillStyle to white to draw a circle at the new position (set in isCircleClicked())
-    context.fillStyle = "white";
+    context.fillStyle = ballColor;
     context.beginPath();
     context.arc(ballX, ballY, ballRadius, 0, 2 * Math.PI);
     context.fill();

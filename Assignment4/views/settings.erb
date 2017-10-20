@@ -1,10 +1,39 @@
 <!DOCTYPE html>
 <html>
     <head>
-
+        <script type="text/javascript" src="/settings_functions.js"></script>
+        <link rel="stylesheet" href="/settings_styles.css">
     </head>
 
     <body>
+
+        <h1>Color Settings Are Set Through HTML Color Values</h1>
+
+        <p>Ball Color
+            <input
+                type="text" id="ball_color_input" value="">
+            </input>
+        </p>
+
+        <p>Background Color
+            <input
+                type="text" id="background_color_input" value="">
+            </input>
+        </p>
+
+        <p>Timer Color
+            <input
+                type="text" id="timer_color_input" value="">
+            </input>
+        </p>
+
+        <input
+            type="button" id="apply_settings_button" onclick="checkIfValidColors()" value="Apply">
+        </input>
+
+        <input
+            type="button" id="test_color_button" class="test">
+        </input>
 
     </body>
 
