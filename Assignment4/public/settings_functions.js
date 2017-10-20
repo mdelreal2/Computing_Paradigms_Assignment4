@@ -13,15 +13,21 @@ window.onload = function()
 
     //otherwise the defualt/custom settings are safe to load and should proceed
 
-    //obtain references to the three text box elements that will set the color settings
-    ballColorTextBox = document.getElementById("ball_color_input");
-    backgroundColorTextBox = document.getElementById("background_color_input");
-    timerColorTextBox = document.getElementById("timer_color_input");
+    //obtain references to the three five box elements that will set the color settings
+    ballColorTextBox = document.getElementById("game_ball_color_input");
+    backgroundColorTextBox = document.getElementById("game_background_color_input");
+    timerColorTextBox = document.getElementById("game_timer_color_input");
+
+    menuBackgroundColorTextBox = document.getElementById("menu_background_color_input");
+    menuRecordsColorTextBox = document.getElementById("menu_records_color_input");
 
     //set the text box values to their current respective color values
     ballColorTextBox.value =  JSON.parse(sessionStorage.getItem("ballColor"));
     backgroundColorTextBox.value =  JSON.parse(sessionStorage.getItem("backgroundColor"));
     timerColorTextBox.value =  JSON.parse(sessionStorage.getItem("timerColor"));
+
+    menuBackgroundColorTextBox.value = JSON.parse(sessionStorage.getItem("menuBackgroundColor"));
+    menuRecordsColorTextBox.value = JSON.parse(sessionStorage.getItem("menuRecordsColor"));
 }
 
 //onclick function that will be called everytime the 'apply_settings_button' is pressed
@@ -48,6 +54,18 @@ function checkIfValidColors()
         validColors = false;
     }
 
+    if(!isValidColor(menuBackgroundColorTextBox.value))
+    {
+        alert("invalid color in Menu Background Color Text Box");
+        validColors = false;
+    }
+
+    if(!isValidColor(menuRecordsColorTextBox.value))
+    {
+        alert("invalid color in Records Background Color Text Box");
+        validColors = false;
+    }
+
     //if all the values inside the text boxes are recognized as valid colors, then...
     if (validColors == true)
     {
@@ -56,10 +74,16 @@ function checkIfValidColors()
         var backgroundColor = new String(backgroundColorTextBox.value);
         var timerColor = new String(timerColorTextBox.value);
 
+        var menuBackgroundColor = new String(menuBackgroundColorTextBox.value);
+        var menuRecordsColor = new String(menuRecordsColorTextBox.value);
+
         //store the new color values with their respective keys
         sessionStorage.setItem("ballColor", JSON.stringify(ballColor));
         sessionStorage.setItem("backgroundColor", JSON.stringify(backgroundColor));
         sessionStorage.setItem("timerColor", JSON.stringify(timerColor));
+
+        sessionStorage.setItem("menuBackgroundColor", JSON.stringify(menuBackgroundColor));
+        sessionStorage.setItem("menuRecordsColor", JSON.stringify(menuRecordsColor));
 
         //alert the user that the color requests were valild and were set properly and then go back to the main page
         alert("Color changes were recorded!");

@@ -7,15 +7,28 @@ window.onload = function()
         var backgroundColor = new String("black");
         var timerColor = new String("white");
 
+        var menuBackgroundColor = new String("white");
+        var menuRecordsColor = new String("black");
+
         //storing the settings into session storage so the user can reload the page and traverse to different pages without losing their settings
         sessionStorage.setItem("ballColor", JSON.stringify(ballColor));
         sessionStorage.setItem("backgroundColor", JSON.stringify(backgroundColor));
         sessionStorage.setItem("timerColor", JSON.stringify(timerColor));
 
+        sessionStorage.setItem("menuBackgroundColor", JSON.stringify(menuBackgroundColor));
+        sessionStorage.setItem("menuRecordsColor", JSON.stringify(menuRecordsColor));
+
         //string that will be set to 'yes' and act as a flag to indicate that default settings were already set and to not rewrite the data upon revisit
         var alreadyVisitedHomePage = new String("yes");
         sessionStorage.setItem("alreadyVisited", JSON.stringify(alreadyVisitedHomePage));
     }
+
+    //draw the menu background and records with their current color settings
+    var menuBackground = document.body;
+    var menuRecords = document.getElementById("display_records");
+
+    menuBackground.style.backgroundColor = JSON.parse(sessionStorage.getItem("menuBackgroundColor"));
+    menuRecords.style.color = JSON.parse(sessionStorage.getItem("menuRecordsColor"));
 }
 
 //function that is called everytime the 'start_button' is pressed
