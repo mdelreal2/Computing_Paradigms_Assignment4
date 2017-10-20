@@ -1,3 +1,4 @@
+//varibles that are important to operating the game
 var ballRadius = 0;
 var ballX = 0;
 var ballY = 0;
@@ -8,20 +9,26 @@ var timer = 5000;
 var score = 0;
 var scoreMultiplier = 0;
 
+//context of the canvas object on the game.erb file that will be manipulated during the game
 var context;
 
+//represent the window size of the internet browser
 var canvasWidth = 0;
 var canvasHeight = 0;
 
+//represents the physical screen size
 var screenWidth = 0;
 var screenHeight = 0;
+
+//will be used to make sure only one instance of setInterval is created to update the game
+var firstClick = true;
 
 window.onload = function()
 {
     //if the user were to navigate to the game page without having come from the home page, redirect them so that 
     //the default settings can be loaded
 
-    if(sessionStorage.getItem('ballRadius') == null)
+    if(sessionStorage.getItem("ballRadius") == null)
     {
         alert("You must enter the game through the home page first");
         window.location.href = "/";
@@ -77,10 +84,12 @@ window.onload = function()
 
 function isCircleClicked(event)
 {
-    //if it is the first time that the circle has been clicked, then start the timer
-    if (score == 0)
+    //if it is the first time that the screen has been clicked, then start the timer
+    if (firstClick == true)
     {
-        //built in method that will call update() every 10 milliseconds
+        firstClick = false;
+
+        //built in method that will call function() every 10 milliseconds
         var interval = setInterval(function() {
             if (timer > 0) 
             {
