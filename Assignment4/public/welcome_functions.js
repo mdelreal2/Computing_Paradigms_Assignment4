@@ -12,6 +12,7 @@ window.onload = function()
         sessionStorage.setItem("backgroundColor", JSON.stringify(backgroundColor));
         sessionStorage.setItem("timerColor", JSON.stringify(timerColor));
 
+        //string that will be set to 'yes' and act as a flag to indicate that default settings were already set and to not rewrite the data upon revisit
         var alreadyVisitedHomePage = new String("yes");
         sessionStorage.setItem("alreadyVisited", JSON.stringify(alreadyVisitedHomePage));
     }
@@ -81,6 +82,7 @@ function startGame()
     }
 }
 
+//function that is called everytime the 'records_button' is clicked
 function loadRecordsSelection()
 {
     //obtain references to all the elements on the web page that refer to records

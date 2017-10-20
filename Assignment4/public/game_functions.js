@@ -1,9 +1,9 @@
 var ballRadius = JSON.parse(sessionStorage.getItem("ballRadius"));
 var ballX = 0;
 var ballY = 0;
-var ballColor;
-var backgroundColor;
-var timerColor;
+var ballColor = "";
+var backgroundColor = "";
+var timerColor = "";
 var timer = 5000;
 var score = 0;
 var scoreMultiplier = 0;
@@ -18,6 +18,13 @@ var screenHeight = 0;
 
 window.onload = function()
 {
+    //if the user were to navigate to the game page without having come from the home page, redirect them so that 
+    //the default settings can be loaded
+    if(sessionStorage.getItem('ballColor') == null)
+    {
+        window.location.href = "/";
+    }
+
     //change any of the ball, background, or timer colors if the user changed them in the settings
     ballColor =  JSON.parse(sessionStorage.getItem("ballColor"));
     backgroundColor =  JSON.parse(sessionStorage.getItem("backgroundColor"));
