@@ -57,8 +57,11 @@ input[type="range"] {
     visibility: hidden;
 }
 
-div {
+table {
     position: absolute;
-    visibility: hidden;
-    left: 5%;
+    width: 100%;
+}
+
+th {
+    text-align: left;
 }
