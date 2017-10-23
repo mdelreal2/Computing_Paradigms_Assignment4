@@ -54,19 +54,19 @@
  
         <br></br>
         <table id="display_records">
-            <th>Name</th>
-            <th>Score</th>
-            <th>Date</th>
+            <th class="span_contents_width">Name</th>
+            <th class="fixed_left_padding">Score</th>
+            <th class="fixed_left_padding">Date</th>
             <% @retrieved_data.each do |record| %>
                 <% d = record.date.strftime("%m/%d/%Y at %I:%M%p") %>
                 <tr>
                     <td>
                         <%= record.name %>
                     </td>
-                    <td>
+                    <td class="fixed_left_padding">
                         <%= record.score %>
                     </td>
-                    <td>
+                    <td class="fixed_left_padding">
                         <%= d%>
                     </td>
                 </tr>

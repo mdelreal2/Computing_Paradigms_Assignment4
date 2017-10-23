@@ -59,9 +59,18 @@ input[type="range"] {
 
 table {
     position: absolute;
-    width: 100%;
 }
 
-th {
+.span_contents_width {
     text-align: left;
+    white-space: nowrap;
+    word-wrap: break-word;
+}
+
+.fixed_left_padding {
+    
+    text-align: left;
+    white-space: nowrap;
+    word-wrap: break-word;
+    padding-left: 20px;
 }
