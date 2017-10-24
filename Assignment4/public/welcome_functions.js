@@ -160,7 +160,7 @@ function loadWithName()
         var entryName = new String("/records_by_name/" + name_box.value);
 
         //alert the user that their request has been sent and to check for changes
-        alert("loading with name");
+        alert("loading with name: " + name_box.value);
         window.location.href = entryName;
     }, false);
 }

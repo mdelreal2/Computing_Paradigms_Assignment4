@@ -176,7 +176,7 @@ function multiplyScoreByMultiplier()
     var windowSizeMultiplier = (canvasWidth / screenWidth) + (canvasHeight / screenHeight);
 
     //set the score as being this new calculation that rewards having a small radius and a large screen size
-    score = Math.floor(10 * radiusMultiplier * windowSizeMultiplier * score);
+    score = Math.floor((10 * radiusMultiplier) + (7 * windowSizeMultiplier) * score);
 }
 
 function coverCircle()
