@@ -86,6 +86,12 @@ function checkIfValidColors()
         sessionStorage.setItem("menuBackgroundColor", JSON.stringify(menuBackgroundColor));
         sessionStorage.setItem("menuRecordsColor", JSON.stringify(menuRecordsColor));
 
+        //post to the server and set the settings to the user's settings if they are registered
+        $(document).ready(function(){
+            $.post("/record", {name: name, score: score}, function(){});
+            
+        });
+
         //alert the user that the color requests were valild and were set properly and then go back to the main page
         alert("Color changes were recorded!");
         window.location.href = '/';
